@@ -1,0 +1,6 @@
+# .gitignore
+
+# Ignorar diretórios específicos
+.idea/
+.pytest_cache/
+__pycache__/
