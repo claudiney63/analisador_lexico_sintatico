@@ -2,49 +2,43 @@ grammar SimpAlg;
 
 programa: 'var' '{' declaracoes '}' 'program' '{' comandos '}';
 
-declaracoes: (declaracao ';')+;
+declaracoes: declaracao+;
 
-declaracao: tipo ID;
+declaracao: tipo lista_de_variaveis ';';
 
 tipo: 'int' | 'float';
 
 comandos: comando+;
 
-comando: atribuicao
-       | entrada
-       | saida
-       | condicional
-       | repeticao;
+comando: atribuicao | saida | entrada | condicional | repeticao;
 
 atribuicao: ID '=' expressao ';';
 
-entrada: 'scan' '(' ID ')';
+saida: 'print' '(' lista_de_valores ')' ';';
 
-saida: 'print' '(' listaValores ')' ';';
+entrada: 'scan' '(' lista_de_variaveis ')' ';';
 
-listaValores: (expressao ',')+;
+condicional: 'if' '(' expressao_logica ')' '{' comandos '}' ('else' '{' comandos '}')?;
 
-condicional: 'if' '(' expressaoLogica ')' '{' comandos '}' ('else' '{' comandos '}')?;
+repeticao: 'while' '(' expressao_logica ')' '{' comandos '}';
 
-repeticao: 'while' '(' expressaoLogica ')' '{' comandos '}';
+expressao: termo (( '+' | '-' ) termo)*;
 
-expressao: termo ('+' termo)*;
+termo: fator (( '*' | '/' ) fator)*;
 
-termo: ID | INT | FLOAT;
+fator: ID | INT | FLOAT | STRING | '(' expressao ')';
 
-expressaoLogica: expressaoRelacional
-              | '!' expressaoLogica
-              | expressaoLogica 'and' expressaoLogica
-              | expressaoLogica 'or' expressaoLogica;
+expressao_logica: relacional;
 
-expressaoRelacional: expressao '>' expressao
-                  | expressao '>=' expressao
-                  | expressao '<' expressao
-                  | expressao '<=' expressao
-                  | expressao '==' expressao
-                  | expressao '!=' expressao;
+relacional: expressao ('<' | '>' | '<=' | '>=' | '==' | '!=') expressao;
 
-ID: [a-zA-Z][a-zA-Z0-9]*;
+lista_de_valores: expressao (',' expressao)*;
+
+lista_de_variaveis: ID (',' ID)*;
+
+ID: [a-zA-Z_] [a-zA-Z0-9_]*;
 INT: [0-9]+;
 FLOAT: [0-9]+ '.' [0-9]+;
+STRING: '"' .*? '"';
+
 WS: [ \t\r\n]+ -> skip;
