@@ -26,9 +26,9 @@ expressao: termo (( '+' | '-' ) termo)*;
 
 termo: fator (( '*' | '/' ) fator)*;
 
-fator: ID | INT | FLOAT | STRING | '(' expressao ')';
+fator: ID | INT | FLOAT | STRING | '(' expressao ')' | '!' fator;
 
-expressao_logica: relacional;
+expressao_logica: relacional (( 'and' | 'or' ) relacional)*;
 
 relacional: expressao ('<' | '>' | '<=' | '>=' | '==' | '!=') expressao;
 
