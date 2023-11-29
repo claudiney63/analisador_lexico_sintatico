@@ -86,58 +86,58 @@ var {
 ## Teste 7
 ~~~
 var {
-int x, y;
+    int x, y;
 } program {
-x = 5;
-y = 3.14;  // Erro: Tentando atribuir um float a uma variável int
+    x = 5;
+    y = 3.14;  // Erro: Tentando atribuir um float a uma variável int
 }
 ~~~
 ## Teste 8
 ~~~
 var {
-int a;
+    int a;
 } program {
-b = 10;  // Erro: 'b' não foi declarada
+    b = 10;  // Erro: 'b' não foi declarada
 }
 ~~~
 ## Teste 9
 ~~~
 var {
-int x;
+    int x;
 } program {
-if (x + 2) {
-print("Isso não deveria acontecer.");
-}
+    if (x + 2) {
+        print("Isso não deveria acontecer.");
+    }
 }
 ~~~
 ## Teste 10
 ~~~
 var {
-int x;
+    int x;
 } program {
-if (x > 0  // Erro: Falta a abertura de chaves
-print("x é positivo");
-else {
-print("x é zero ou negativo");
-}
+    if (x > 0  // Erro: Falta a abertura de chaves
+        print("x é positivo");
+    else {
+        print("x é zero ou negativo");
+    }
 }
 ~~~
 ## Teste 11
 ~~~
 var {
-string msg;
+    string msg;
 } program {
-msg = "Erro de string;  // Erro: String não fechada corretamente
-print(msg);
+    msg = "Erro de string;  // Erro: String não fechada corretamente
+    print(msg);
 }
 ~~~
 ## Teste 12
 ~~~
 var {
-float a, b;
+    float a, b;
 } program {
-if (a + b) {  // Erro: Expressão lógica esperada
-print("Isso não deveria acontecer.");
-}
+    if (a + b) {  // Erro: Expressão lógica esperada
+        print("Isso não deveria acontecer.");
+    }
 }
 ~~~
