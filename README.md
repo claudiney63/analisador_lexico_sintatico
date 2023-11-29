@@ -35,4 +35,4 @@ program {
 ```
 
 ## Imagem da arvore de derivação do exemplo acima:
-![Alt text](image.png)
+![parseTree](https://github.com/claudiney63/analisador_lexico_sintatico/assets/40923082/a0494a07-fd83-431c-85dd-8a6b151a6460)
