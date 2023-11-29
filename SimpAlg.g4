@@ -39,6 +39,7 @@ lista_de_variaveis: ID (',' ID)*;
 ID: [a-zA-Z_] [a-zA-Z0-9_]*;
 INT: [0-9]+;
 FLOAT: [0-9]+ '.' [0-9]+;
-STRING: '"' .*? '"';
+STRING: '"' ( ~["\r\n\\] | '\\' [rnt\\"'] )* '"';
 
+Comment: '//' ~[\r\n]* -> skip;
 WS: [ \t\r\n]+ -> skip;
