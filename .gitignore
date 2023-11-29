@@ -4,5 +4,6 @@
 .idea/
 .pytest_cache/
 __pycache__/
+.gen/
 venv
 .antlr
