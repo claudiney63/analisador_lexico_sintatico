@@ -13,7 +13,6 @@ Repositório referente a implementação de um analisador léxico e sintático d
 Professor Carlos André, período 2023.2.
 
 ## Índice
-#####
 [Baixando e configurando o ANTLR](#baixando-e-configurando-o-antlr)  
 [Testando o ANTLR](#testando-o-antlr)  
 [Utilizando o ANTLR no IntelliJ](#utilizando-o-antlr-no-intellij)  
