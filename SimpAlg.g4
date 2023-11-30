@@ -28,9 +28,9 @@ termo: fator (( '*' | '/' ) fator)*;
 
 fator: ID | INT | FLOAT | STRING | '(' expressao ')' | '!' fator;
 
-expressao_logica: relacional (( 'and' | 'or' ) relacional)*;
+expressao_logica: '(' expressao_logica ')' | relacional (( 'and' | 'or' ) relacional)*;
 
-relacional: expressao ('<' | '>' | '<=' | '>=' | '==' | '!=') expressao;
+relacional: '!' relacional | '(' relacional (('and'| 'or') relacional)? ')' | expressao (('<' | '>' | '<=' | '>=' | '==' | '!=') expressao) ;
 
 lista_de_valores: expressao (',' expressao)*;
 
