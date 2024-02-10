@@ -1,6 +1,10 @@
 grammar SimpAlg;
 
-programa: 'var' '{' declaracoes '}' 'program' '{' comandos '}';
+programa: 'var' bloco_declaracoes 'program' bloco_comandos;
+
+bloco_declaracoes: '{' declaracoes '}';
+
+bloco_comandos: '{' comandos '}';
 
 declaracoes: declaracao+;
 
@@ -12,27 +16,27 @@ comandos: comando+;
 
 comando: atribuicao | saida | entrada | condicional | repeticao;
 
-atribuicao: ID '=' expressao ';';
+atribuicao: ID '=' expressao_aritmetica ';';
 
 saida: 'print' '(' lista_de_valores ')' ';';
 
 entrada: 'scan' '(' lista_de_variaveis ')' ';';
 
-condicional: 'if' '(' expressao_logica ')' '{' comandos '}' ('else' '{' comandos '}')?;
+condicional: 'if' '(' expressao_booleana ')' bloco_comandos ('else' bloco_comandos)?;
 
-repeticao: 'while' '(' expressao_logica ')' '{' comandos '}';
+repeticao: 'while' '(' expressao_booleana ')' bloco_comandos;
 
-expressao: termo (( '+' | '-' ) termo)*;
+expressao_aritmetica: termo (( '+' | '-' ) termo)*;
 
 termo: fator (( '*' | '/' ) fator)*;
 
-fator: ID | INT | FLOAT | STRING | '(' expressao ')' | '!' fator;
+fator: ID | INT | FLOAT | '(' expressao_aritmetica ')';
 
-expressao_logica: '(' expressao_logica ')' | relacional (( 'and' | 'or' ) relacional)*;
+expressao_booleana: relacional (( 'and' | 'or' ) relacional)*;
 
-relacional: '!' relacional | '(' relacional (('and'| 'or') relacional)? ')' | expressao (('<' | '>' | '<=' | '>=' | '==' | '!=') expressao) ;
+relacional: expressao_aritmetica (('<' | '>' | '<=' | '>=' | '==' | '!=') expressao_aritmetica);
 
-lista_de_valores: expressao (',' expressao)*;
+lista_de_valores: expressao_aritmetica (',' expressao_aritmetica)*;
 
 lista_de_variaveis: ID (',' ID)*;
 
