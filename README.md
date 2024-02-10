@@ -13,11 +13,16 @@ Repositório referente a implementação de um analisador léxico e sintático d
 Professor Carlos André, período 2023.2.
 
 ## Índice
+[Baixando e o JAVA](#baixando-o-java)  
 [Baixando e configurando o ANTLR](#baixando-e-configurando-o-antlr)  
 [Testando o ANTLR](#testando-o-antlr)  
 [Utilizando o ANTLR no IntelliJ](#utilizando-o-antlr-no-intellij)  
 [Testes](#testes)  
 [Autores](#autores)
+
+## Baixando o java
+Para rodar o ANTLR é necessário baixar o JDK:
+https://www.oracle.com/br/java/technologies/downloads/#jdk21-windows
 
 ## Baixando e configurando o ANTLR
 
@@ -107,7 +112,7 @@ Para utilizar o ANTLR no IntelliJ, basta instalar o plugin ANTLR4 indo na aba `p
     <img src="assets/install-plugin.png" width="500">
 </p>
 
-Depois, basta criar uma gramática (arquivo com extensão .g4), adicionar as regras, clicar com o botão direito do mouse eselecionar `Generate ANTLR Recognizer`
+Depois, basta criar uma gramática (arquivo com extensão .g4), adicionar as regras, clicar com o botão direito do mouse e selecionar `Generate ANTLR Recognizer`
 
 <p align="center">
     <img src="assets/generate-regognizer.png" width="350">
