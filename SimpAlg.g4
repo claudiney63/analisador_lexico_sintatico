@@ -26,13 +26,19 @@ expressao: termo (( '+' | '-' ) termo)*;
 
 termo: fator (( '*' | '/' ) fator)*;
 
-fator: ID | INT | FLOAT | STRING | '(' expressao ')' | '!' fator;
+fator: ID | INT | FLOAT | '(' expressao ')';
 
-expressao_logica: '(' expressao_logica ')' | relacional (( 'and' | 'or' ) relacional)*;
+// TA DANDO ERRO AQUI - TESTE: if(3 > 5)
+expressao_logica: '(' expressao_logica ')' | or_expr;// relacional (( 'and' | 'or' ) relacional)*;
 
-relacional: '!' relacional | '(' relacional (('and'| 'or') relacional)? ')' | expressao (('<' | '>' | '<=' | '>=' | '==' | '!=') expressao) ;
+or_expr: and_expr ('or' and_expr);
 
-lista_de_valores: expressao (',' expressao)*;
+and_expr: relacional ('and' relacional);
+// ATÉ AQUI
+
+relacional: '!' relacional | '(' relacional (('and'| 'or') relacional)? ')' | (ID | INT | FLOAT) (('<' | '>' | '<=' | '>=' | '==' | '!=') (ID | INT | FLOAT));
+
+lista_de_valores: (ID | INT | FLOAT | STRING) (',' (ID | INT | FLOAT | STRING))*;
 
 lista_de_variaveis: ID (',' ID)*;
 
