@@ -41,26 +41,33 @@ Se sim: `relacional: '!' ID | '!' relacional | '(' relacional (('and'| 'or') rel
 ## 5 - Erro na precedência do and e or
 ~~~
 // de: 
-
+expressao_logica: '(' expressao_logica ')' | relacional (( 'and' | 'or' ) relacional)*;
 
 // para:
+expressao_logica: '(' expressao_logica ')' | or_expr;
 
+or_expr: and_expr ('or' and_expr)? | or_expr ('or' or_expr);
+
+and_expr: relacional ('and' relacional)? | and_expr ('and' and_expr);
+
+relacional: '!' relacional | '(' relacional (('and'| 'or') relacional)? ')' | relacional (('<' | '>' | '<=' | '>=' | '==' | '!=') relacional) | (ID | INT | FLOAT);
 ~~~
 
 ## 6 - Não fez o módulo (%)
 ~~~
 // de: 
-
+termo: fator (( '*' | '/') fator);
 
 // para:
-
+termo: fator (( '*' | '/') fator)* | (INT | ID) (('%') (INT | ID))*;
 ~~~
 
 ## 7 - Não fez operações unárias (- e +)
 ~~~
 // de: 
-
+expressao: termo (( '+' | '-' ) termo)*;
 
 // para:
-
+expressao: termo(( '+' | '-' ) termo)* | op_unario termo;
+op_unario: '+' | '-';
 ~~~

@@ -22,25 +22,25 @@ condicional: 'if' '(' expressao_logica ')' '{' comandos '}' ('else' '{' comandos
 
 repeticao: 'while' '(' expressao_logica ')' '{' comandos '}';
 
-expressao: termo (( '+' | '-' ) termo)*;
+expressao: termo(( '+' | '-' ) termo)* | op_unario termo;
 
-termo: fator (( '*' | '/' ) fator)*;
+termo: fator (( '*' | '/') fator)* | (INT | ID) (('%') (INT | ID))*;
 
 fator: ID | INT | FLOAT | '(' expressao ')';
 
-// TA DANDO ERRO AQUI - TESTE: if(3 > 5)
-expressao_logica: '(' expressao_logica ')' | or_expr;// relacional (( 'and' | 'or' ) relacional)*;
+expressao_logica: '(' expressao_logica ')' | or_expr;
 
-or_expr: and_expr ('or' and_expr);
+or_expr: and_expr ('or' and_expr)? | or_expr ('or' or_expr);
 
-and_expr: relacional ('and' relacional);
-// ATÉ AQUI
+and_expr: relacional ('and' relacional)? | and_expr ('and' and_expr);
 
-relacional: '!' relacional | '(' relacional (('and'| 'or') relacional)? ')' | (ID | INT | FLOAT) (('<' | '>' | '<=' | '>=' | '==' | '!=') (ID | INT | FLOAT));
+relacional: '!' relacional | '(' relacional (('and'| 'or') relacional)? ')' | relacional (('<' | '>' | '<=' | '>=' | '==' | '!=') relacional) | (ID | INT | FLOAT);
 
 lista_de_valores: (ID | INT | FLOAT | STRING) (',' (ID | INT | FLOAT | STRING))*;
 
 lista_de_variaveis: ID (',' ID)*;
+
+op_unario: '+' | '-';
 
 ID: [a-zA-Z_] [a-zA-Z0-9_]*;
 INT: [0-9]+;
